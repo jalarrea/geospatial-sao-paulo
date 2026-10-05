@@ -1,0 +1,315 @@
+:root {
+  --cyan: #29e0ff;
+  --cyan-dim: rgba(41, 224, 255, 0.35);
+  --yellow: #ffc21a;
+  --panel: rgba(2, 10, 18, 0.72);
+  --text: #bfefff;
+  --mono: "Share Tech Mono", ui-monospace, Menlo, monospace;
+  --display: "Orbitron", var(--mono);
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  background: #000;
+  color: var(--text);
+  font-family: var(--mono);
+}
+
+#container,
+#container canvas {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+
+.scanlines {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0,
+    rgba(0, 0, 0, 0) 2px,
+    rgba(0, 20, 30, 0.18) 3px
+  );
+  box-shadow: inset 0 0 180px rgba(0, 0, 0, 0.85);
+}
+
+.panel {
+  position: fixed;
+  background: var(--panel);
+  border: 1px solid var(--cyan-dim);
+  box-shadow: 0 0 18px rgba(41, 224, 255, 0.15), inset 0 0 24px rgba(41, 224, 255, 0.06);
+  backdrop-filter: blur(3px);
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+}
+
+.label {
+  color: var(--cyan);
+  opacity: 0.7;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Top bar */
+.hud-top {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.brand {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 0.25em;
+  color: var(--cyan);
+  text-shadow: 0 0 10px var(--cyan);
+}
+
+.brand span {
+  color: var(--yellow);
+  text-shadow: 0 0 10px var(--yellow);
+}
+
+.clock {
+  text-align: right;
+  font-size: 22px;
+  color: var(--cyan);
+  text-shadow: 0 0 8px var(--cyan);
+}
+
+.maneuver {
+  position: static;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 22px 12px 14px;
+  min-width: 320px;
+  max-width: 46vw;
+  border-color: rgba(255, 194, 26, 0.6);
+  box-shadow: 0 0 22px rgba(255, 194, 26, 0.25), inset 0 0 24px rgba(255, 194, 26, 0.08);
+}
+
+#maneuver-arrow {
+  width: 54px;
+  height: 54px;
+  flex: none;
+  transition: transform 0.4s ease;
+}
+
+#maneuver-arrow path {
+  fill: none;
+  stroke: var(--yellow);
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 4px var(--yellow));
+}
+
+.maneuver-distance {
+  font-family: var(--display);
+  font-size: 28px;
+  color: var(--yellow);
+  text-shadow: 0 0 10px rgba(255, 194, 26, 0.7);
+}
+
+.maneuver-text {
+  font-size: 15px;
+  margin-top: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Telemetry */
+.telemetry {
+  top: 110px;
+  left: 16px;
+  width: 230px;
+  padding: 14px 18px 16px;
+}
+
+.telemetry .row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 4px 0;
+  border-bottom: 1px dashed rgba(41, 224, 255, 0.15);
+}
+
+.telemetry .label {
+  width: 36px;
+}
+
+.telemetry .value {
+  font-family: var(--display);
+  font-size: 24px;
+  color: #e9fbff;
+  text-shadow: 0 0 8px var(--cyan);
+}
+
+.telemetry .unit {
+  font-size: 11px;
+  opacity: 0.6;
+}
+
+.telemetry .accent .value {
+  color: var(--yellow);
+  text-shadow: 0 0 8px var(--yellow);
+}
+
+.progress {
+  margin: 14px 0 12px;
+  height: 6px;
+  background: rgba(41, 224, 255, 0.12);
+}
+
+#progress-bar {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--cyan), var(--yellow));
+  box-shadow: 0 0 10px var(--yellow);
+}
+
+.street {
+  margin-top: 4px;
+  font-size: 15px;
+  min-height: 20px;
+}
+
+.coords {
+  margin-top: 10px;
+  font-size: 11px;
+  opacity: 0.5;
+}
+
+/* Controls */
+.controls {
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  max-width: calc(100vw - 64px);
+}
+
+.controls label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: var(--cyan);
+}
+
+.controls input,
+.controls select,
+.controls button {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--text);
+  background: rgba(41, 224, 255, 0.06);
+  border: 1px solid var(--cyan-dim);
+  padding: 6px 10px;
+  outline: none;
+}
+
+.controls input {
+  width: 190px;
+}
+
+.controls input:focus {
+  border-color: var(--cyan);
+  box-shadow: 0 0 8px var(--cyan-dim);
+}
+
+.controls button {
+  cursor: pointer;
+  letter-spacing: 0.1em;
+}
+
+.controls button:hover:not(:disabled),
+.controls button.active {
+  color: #001018;
+  background: var(--cyan);
+  box-shadow: 0 0 12px var(--cyan);
+}
+
+.controls button.primary {
+  border-color: var(--yellow);
+  color: var(--yellow);
+}
+
+.controls button.primary:hover:not(:disabled) {
+  color: #1a1000;
+  background: var(--yellow);
+  box-shadow: 0 0 12px var(--yellow);
+}
+
+.controls button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.controls select option {
+  background: #02101a;
+}
+
+.divider {
+  width: 1px;
+  height: 22px;
+  background: var(--cyan-dim);
+}
+
+.status {
+  flex-basis: 100%;
+  text-align: center;
+  font-size: 12px;
+  min-height: 15px;
+  color: var(--cyan);
+  opacity: 0.8;
+}
+
+.status.error {
+  color: #ff5a6e;
+  opacity: 1;
+}
+
+#credits {
+  position: fixed;
+  bottom: 6px;
+  left: 10px;
+  font-size: 9px;
+  color: rgba(191, 239, 255, 0.45);
+  user-select: none;
+}
+
+@media (max-width: 760px) {
+  .telemetry {
+    top: auto;
+    bottom: 190px;
+    width: 180px;
+  }
+  .maneuver {
+    min-width: 0;
+    max-width: 60vw;
+  }
+  .controls input {
+    width: 130px;
+  }
+}

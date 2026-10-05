@@ -13,6 +13,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
+        gps: resolve(__dirname, 'gps.html'),
         atmosphere: resolve(__dirname, 'atmosphere.html'),
         clouds: resolve(__dirname, 'clouds.html'),
         tiles: resolve(__dirname, 'tiles.html'),

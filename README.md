@@ -4,7 +4,7 @@ A São Paulo edition of [jeantimex/geospatial](https://github.com/jeantimex/geos
 
 ## São Paulo Demo
 
-The main page (`index.html` → `src/main/index.ts`) centers the camera on the midpoint of Avenida Paulista (`-23.5635, -46.6520`), looking along the avenue toward Consolação, at 9:00 AM São Paulo time (UTC-03:00). It includes:
+The main page (`index.html` → `src/main/index.ts`) centers the camera on the midpoint of Avenida Paulista (`-23.5635, -46.6520`), looking northwest along the avenue toward Consolação, at 9:00 AM São Paulo time (UTC-03:00). It includes:
 
 - Google Photorealistic 3D Tiles of São Paulo
 - Realistic sky rendering with proper light scattering
@@ -13,7 +13,19 @@ The main page (`index.html` → `src/main/index.ts`) centers the camera on the m
 - Atmospheric perspective effects
 - Interactive camera controls (click or scroll to take control)
 
-To frame a different spot, change `longitude`, `latitude`, `heading`, `pitch` and `distance` in `src/main/index.ts`; to change the lighting, change `referenceDate`.
+To frame a different spot, change `longitude`, `latitude`, `height`, `bearing`, `pitch` and `distance` in `src/main/index.ts`; to change the lighting, change `referenceDate`. Keep `height` close to the real ground elevation (São Paulo sits ~800 m above sea level), or the camera ends up underground.
+
+## GPS Mode
+
+`gps.html` (`src/gps/`) turns the city into a sci-fi navigation display:
+
+- Holographic restyle of the 3D tiles: dark geometry, glowing window grids, street grid and bloom
+- Driving directions between any two places in São Paulo (preset landmarks, `lat,lon`, or free-text search)
+- Route drawn as an animated ribbon draped on the tiles (ground heights come from raycasting the loaded tiles)
+- Simulated drive with a chase camera, turn-by-turn instructions, speed, remaining distance, elapsed time and ETA
+- Camera modes: follow, overview and free (mouse controls)
+
+Routing uses the public [OSRM](https://project-osrm.org/) demo server and geocoding uses [Nominatim](https://nominatim.org/); both are free OpenStreetMap services intended for light, demo usage.
 
 ## Getting Started
 

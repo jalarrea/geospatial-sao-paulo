@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>São Paulo GPS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Share+Tech+Mono&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="container"></div>
+    <div class="scanlines"></div>
+
+    <header class="hud-top">
+      <div class="brand">SP<span>//</span>NAV</div>
+      <div id="maneuver" class="panel maneuver hidden">
+        <svg id="maneuver-arrow" viewBox="-20 -20 40 40" aria-hidden="true">
+          <path d="M0 14 V-6 M-9 3 L0 -12 L9 3" />
+        </svg>
+        <div>
+          <div id="maneuver-distance" class="maneuver-distance">—</div>
+          <div id="maneuver-text" class="maneuver-text">—</div>
+        </div>
+      </div>
+      <div class="clock">
+        <div class="label">SÃO PAULO</div>
+        <div id="clock">--:--:--</div>
+      </div>
+    </header>
+
+    <aside class="panel telemetry">
+      <div class="row"><span class="label">SPD</span><span id="speed" class="value">000</span><span class="unit">KM/H</span></div>
+      <div class="row"><span class="label">REM</span><span id="remaining" class="value">--.-</span><span class="unit">KM</span></div>
+      <div class="row"><span class="label">T+</span><span id="elapsed" class="value">00:00</span></div>
+      <div class="row accent"><span class="label">ETA</span><span id="eta" class="value">--:--</span></div>
+      <div class="progress"><div id="progress-bar"></div></div>
+      <div class="street-label label">CURRENT ROAD</div>
+      <div id="street" class="street">—</div>
+      <div id="coords" class="coords">-23.5635 / -46.6520</div>
+    </aside>
+
+    <footer class="panel controls">
+      <datalist id="places"></datalist>
+      <label>FROM <input id="from" list="places" autocomplete="off" /></label>
+      <label>TO <input id="to" list="places" autocomplete="off" /></label>
+      <button id="route-button" class="primary">ROUTE</button>
+      <span class="divider"></span>
+      <button id="play-button" disabled>▶ START</button>
+      <select id="speed-select" title="Simulation speed">
+        <option value="1">×1</option>
+        <option value="5">×5</option>
+        <option value="10" selected>×10</option>
+        <option value="30">×30</option>
+      </select>
+      <span class="divider"></span>
+      <button id="follow-button" disabled>FOLLOW</button>
+      <button id="overview-button" disabled>OVERVIEW</button>
+      <button id="free-button">FREE CAM</button>
+      <div id="status" class="status"></div>
+    </footer>
+
+    <div id="credits"></div>
+    <script type="module" src="/src/gps/index.ts"></script>
+  </body>
+</html>
