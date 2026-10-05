@@ -111,15 +111,23 @@ function init(): void {
   // from Paraíso toward Consolação.
   const longitude = -46.652; // degrees
   const latitude = -23.5635; // degrees
-  const heading = 305; // degrees, aligned with the avenue's NW axis
+  // Paulista sits ~830 m above the ellipsoid; a zero height would put the
+  // target (and the camera) underground.
+  const height = 830; // meters
+  const bearing = 305; // compass degrees, aligned with the avenue's NW axis
   const pitch = -20; // degrees
   const distance = 1500; // meters
 
   // Calculate the center point on the globe in ECEF coordinates
   const centerECEF = new Geodetic(
     radians(longitude),
-    radians(latitude)
+    radians(latitude),
+    height
   ).toECEF(); // Converts lon/lat to a Vector3 position
+
+  // PointOfView measures heading counterclockwise from east, so convert
+  // the compass bearing (clockwise from north).
+  const heading = 90 - bearing;
 
   // Calculate camera position and orientation based on the point of view
   new PointOfView(distance, radians(heading), radians(pitch)).decompose(
@@ -165,6 +173,11 @@ function init(): void {
   });
 
   clouds = new CloudsEffect(camera);
+  // Default layer altitudes are relative to the ellipsoid (sea level);
+  // lift them by the ground height so they don't sit on the city.
+  for (const layer of clouds.cloudLayers) {
+    layer.altitude += height;
+  }
   clouds.coverage = 0.3;
   clouds.localWeatherVelocity.set(0.001, 0);
   clouds.shadow.farScale = 0.25;
