@@ -4,7 +4,7 @@ A São Paulo edition of [jeantimex/geospatial](https://github.com/jeantimex/geos
 
 ## São Paulo Demo
 
-The main page (`index.html` → `src/main/index.ts`) frames the camera over Avenida Paulista / MASP (`-23.5614, -46.6559`) at 9:00 AM São Paulo time (UTC-03:00). It includes:
+The main page (`index.html` → `src/main/index.ts`) centers the camera on the midpoint of Avenida Paulista (`-23.5635, -46.6520`), looking along the avenue toward Consolação, at 9:00 AM São Paulo time (UTC-03:00). It includes:
 
 - Google Photorealistic 3D Tiles of São Paulo
 - Realistic sky rendering with proper light scattering

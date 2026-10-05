@@ -107,11 +107,13 @@ function init(): void {
   camera = new PerspectiveCamera(75, aspect, 10, 1e6);
 
   // --- New setup using geospatial coordinates ---
-  const longitude = -46.6559; // degrees (São Paulo, Avenida Paulista / MASP)
-  const latitude = -23.5614; // degrees
-  const heading = 180; // degrees
-  const pitch = -10; // degrees
-  const distance = 3000; // meters
+  // Midpoint of Avenida Paulista (São Paulo), looking along the avenue
+  // from Paraíso toward Consolação.
+  const longitude = -46.652; // degrees
+  const latitude = -23.5635; // degrees
+  const heading = 305; // degrees, aligned with the avenue's NW axis
+  const pitch = -20; // degrees
+  const distance = 1500; // meters
 
   // Calculate the center point on the globe in ECEF coordinates
   const centerECEF = new Geodetic(
