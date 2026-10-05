@@ -3,14 +3,14 @@
  * 
  * @param dayOfYear - Day of the year (1-365/366)
  * @param timeOfDay - Time of day in hours (0-24)
- * @param timezone - Timezone offset in hours (e.g., 9 for Tokyo/+09:00, -7 for PDT/-07:00)
+ * @param timezone - Timezone offset in hours (e.g., -3 for São Paulo/-03:00, 9 for Tokyo/+09:00)
  * @param year - Optional year (defaults to current year)
  * @returns Date object in the specified timezone
  */
 export function createDateFromDayAndTimeWithTimezone(
   dayOfYear: number,
   timeOfDay: number,
-  timezone: number = 9, // Default to Tokyo timezone (+09:00)
+  timezone: number = -3, // Default to São Paulo timezone (-03:00)
   year: number = new Date().getFullYear()
 ): Date {
   // Validate inputs

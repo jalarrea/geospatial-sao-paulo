@@ -1,19 +1,19 @@
-# Geospatial
+# Geospatial — São Paulo
 
-A collection of Three.js-based geospatial visualizations, featuring an Earth atmosphere rendering demo.
+A São Paulo edition of [jeantimex/geospatial](https://github.com/jeantimex/geospatial): a Three.js scene that renders Google Photorealistic 3D Tiles of the city with physically based atmosphere, volumetric clouds and sun/moon lighting.
 
-## Atmosphere Demo
+## São Paulo Demo
 
-This demo showcases a realistic Earth atmosphere effect using the `@takram/three-atmosphere` [library](https://github.com/takram-design-engineering/three-geospatial/). The visualization includes:
+The main page (`index.html` → `src/main/index.ts`) frames the camera over Avenida Paulista / MASP (`-23.5614, -46.6559`) at 9:00 AM São Paulo time (UTC-03:00). It includes:
 
+- Google Photorealistic 3D Tiles of São Paulo
 - Realistic sky rendering with proper light scattering
-- Dynamic sun and moon positioning
+- Volumetric clouds with shadows
+- Sun and moon positioned for the local date and time
 - Atmospheric perspective effects
-- Interactive camera controls
+- Interactive camera controls (click or scroll to take control)
 
-https://github.com/user-attachments/assets/9526c361-c41a-4e6e-add7-05bf9ebd9613
-
-[Atmosphere Demo Preview](https://jeantimex.github.io/geospatial/)
+To frame a different spot, change `longitude`, `latitude`, `heading`, `pitch` and `distance` in `src/main/index.ts`; to change the lighting, change `referenceDate`.
 
 ## Getting Started
 
@@ -28,8 +28,8 @@ https://github.com/user-attachments/assets/9526c361-c41a-4e6e-add7-05bf9ebd9613
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/jeantimex/geospatial.git
-   cd geospatial
+   git clone https://github.com/jalarrea/geospatial-sao-paulo.git
+   cd geospatial-sao-paulo
    ```
 
 2. Install dependencies:
@@ -58,7 +58,7 @@ https://github.com/user-attachments/assets/9526c361-c41a-4e6e-add7-05bf9ebd9613
 
 5. Open your browser and navigate to the URL shown in the terminal (typically http://localhost:5173).
 
-## Available Demos
+## Other Demos (from upstream)
 
 - **[Atmosphere](https://jeantimex.github.io/geospatial/atmosphere.html)**: A realistic Earth atmosphere visualization. This is based on @takram/three-geospatial's [Atmosphere Vanilla demo](https://takram-design-engineering.github.io/three-geospatial/?path=/story/atmosphere-atmosphere--vanilla).
 - **[Clouds](https://jeantimex.github.io/geospatial/clouds.html)**: Simulate the clouds visualization. This is based on @takram/three-geospatial's [Clouds Vanilla demo](https://takram-design-engineering.github.io/three-geospatial/?path=/story/clouds-clouds--vanilla).
@@ -77,6 +77,7 @@ The built files will be in the `dist` directory.
 
 ## Credits
 
+- Original project: [jeantimex/geospatial](https://github.com/jeantimex/geospatial) by Yong Su (jeantimex), MIT License
 - Atmosphere rendering based on the [@takram/three-atmosphere](https://github.com/takram-design-engineering/takram-atmosphere) library
 - Earth texture assets from [NASA Visible Earth](https://visibleearth.nasa.gov/)
 - 3D tiles rendering from [NASA-AMMOS/3DTilesRendererJS](https://github.com/NASA-AMMOS/3DTilesRendererJS) library
@@ -84,8 +85,4 @@ The built files will be in the `dist` directory.
 
 ## License
 
-MIT
-
-## Author
-
-Yong Su (jeantimex)
+MIT — see [LICENSE](LICENSE). Original work © 2025 Yong Su (jeantimex).

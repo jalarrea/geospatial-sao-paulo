@@ -75,8 +75,8 @@ const sunDirection = new Vector3();
 const moonDirection = new Vector3();
 const rotationMatrix = new Matrix4();
 
-// Tokyo time 9:00AM
-const referenceDate = new Date("2024-03-01T09:00:00+09:00");
+// São Paulo time 9:00AM (BRT, UTC-03:00)
+const referenceDate = new Date("2024-03-01T09:00:00-03:00");
 
 function init(): void {
   // scene
@@ -107,8 +107,8 @@ function init(): void {
   camera = new PerspectiveCamera(75, aspect, 10, 1e6);
 
   // --- New setup using geospatial coordinates ---
-  const longitude = 139.7671; // degrees (Tokyo)
-  const latitude = 35.6812; // degrees
+  const longitude = -46.6559; // degrees (São Paulo, Avenida Paulista / MASP)
+  const latitude = -23.5614; // degrees
   const heading = 180; // degrees
   const pitch = -10; // degrees
   const distance = 3000; // meters

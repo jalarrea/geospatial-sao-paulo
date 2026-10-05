@@ -4,8 +4,7 @@ import { resolve } from 'path';
 // Get the repository name from package.json or environment variable
 const getBase = () => {
   // For GitHub Pages, use the repository name as the base
-  // You can replace 'geospatial' with your actual repository name if different
-  return '/geospatial/';
+  return '/geospatial-sao-paulo/';
 };
 
 export default defineConfig({
